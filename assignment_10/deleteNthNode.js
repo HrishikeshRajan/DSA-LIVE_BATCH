@@ -23,8 +23,8 @@ class LinkedList {
     }
   }
 
-  print() {
-    let current = this.head;
+  print(head) {
+    let current = head||this.head;
     if (current) {
       while (current) {
         console.log(current.data);
@@ -40,12 +40,16 @@ class LinkedList {
   }
 
   deleteNodeOnPos(position) {
-    let hare = this.head;
-    let tortoise = this.head;
-
     if(position<1){
-        return false
-    }
+        return 'Inavalid option'
+      }
+       const dummyNode = new Node(0);
+
+        dummyNode.next = this.head;
+
+    let hare = dummyNode;
+    let tortoise = dummyNode;
+    
     //Here the hare pointer first move to position + 1th index
     for (let i = 1; i <= position + 1; i++) {
       hare = hare.next;
@@ -62,7 +66,7 @@ class LinkedList {
     }
 
     tortoise.next = tortoise.next.next;
-    return this.head;
+   return dummyNode.next;
   }
 }
 
